@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Musician Detail</title>
+</head>
+<body>
+    <h1>{{ musician.first_name }} {{ musician.last_name }}</h1>
+    <p>Email: {{ musician.email }}</p>
+    <p>Phone: {{ musician.phone_number }}</p>
+    <p>Instrument: {{ musician.instrument_type }}</p>
+    <h2>Albums</h2>
+    <ul>
+        {% for album in musician.albums.all %}
+        <li>{{ album.album_name }} ({{ album.release_date }}) - Rating: {{ album.rating }}
+            <a href="{% url 'album_edit' album.pk %}">Edit</a> |
+            <a href="{% url 'album_delete' album.pk %}">Delete</a>
+        </li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'album_create' musician.pk %}">Add new album</a>
+</body>
+</html>

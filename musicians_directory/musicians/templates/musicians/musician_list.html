@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Musician List</title>
+</head>
+<body>
+    <h1>Musician List</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Musician Name</th>
+                <th>Email</th>
+                <th>Instrument Type</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for musician in musicians %}
+            <tr>
+                <td>{{ musician.id }}</td>
+                <td><a href="{% url 'musician_detail' musician.pk %}">{{ musician.first_name }} {{ musician.last_name }}</a></td>
+                <td>{{ musician.email }}</td>
+                <td>{{ musician.instrument_type }}</td>
+                <td>
+                    <a href="{% url 'musician_edit' musician.pk %}">Edit</a> |
+                    <a href="{% url 'musician_delete' musician.pk %}">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="{% url 'musician_create' %}">Add new musician</a>
+</body>
+</html>
